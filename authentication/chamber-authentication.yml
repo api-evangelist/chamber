@@ -1,0 +1,15 @@
+generated: '2026-07-18'
+method: derived
+source: openapi/chamber-openapi.yml
+summary:
+  types:
+  - http
+schemes:
+- name: bearerAuth
+  type: http
+  scheme: bearer
+  bearerFormat: JWT
+  description: Bearer token — a JWT from Cognito or a Chamber API token (prefix `ch.`). Generate
+    API tokens in the dashboard under Settings > API Tokens.
+  sources:
+  - openapi/chamber-openapi.yml
