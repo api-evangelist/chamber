@@ -1,0 +1,350 @@
+openapi: 3.1.0
+info:
+  title: Chamber Capacity Workloads API
+  version: 1.0.0
+  description: The Chamber REST API provides programmatic access to manage GPU capacity, monitor workloads, and query GPU metrics across your organization. Chamber is an AIOps control plane for enterprise AI infrastructure that helps ML teams monitor, diagnose, and resolve GPU workload issues across AWS, GCP, Azure, and on-premise clusters. All requests (except the health check) require a Bearer token and an organization context header.
+  contact:
+    name: Chamber Support
+    email: support@usechamber.io
+    url: https://docs.usechamber.io/api-reference/introduction
+  x-provider: Chamber
+  x-source: https://docs.usechamber.io/api-reference/introduction
+servers:
+- url: https://api.usechamber.io/v1
+  description: Production
+security:
+- bearerAuth: []
+tags:
+- name: Workloads
+  description: List, retrieve, and get statistics for GPU workloads
+paths:
+  /workloads:
+    get:
+      operationId: listWorkloads
+      summary: List workloads
+      description: Retrieve a paginated list of workloads with optional filtering. Results are automatically filtered based on your role and team access.
+      tags:
+      - Workloads
+      parameters:
+      - $ref: '#/components/parameters/OrganizationIdHeader'
+      - $ref: '#/components/parameters/RequestIdHeader'
+      - name: organization_id
+        in: query
+        description: Filter by organization
+        schema:
+          type: string
+      - name: initiative_id
+        in: query
+        description: Filter by team
+        schema:
+          type: string
+      - name: status
+        in: query
+        description: Filter by workload status
+        schema:
+          type: string
+          enum:
+          - pending
+          - running
+          - completed
+          - failed
+          - cancelled
+      - name: submitted_by
+        in: query
+        description: Filter by user who submitted the workload
+        schema:
+          type: string
+      - name: is_managed
+        in: query
+        description: Filter managed vs unmanaged workloads
+        schema:
+          type: boolean
+      - name: start_date
+        in: query
+        description: Filter workloads submitted after this date (ISO 8601)
+        schema:
+          type: string
+          format: date-time
+      - name: end_date
+        in: query
+        description: Filter workloads submitted before this date (ISO 8601)
+        schema:
+          type: string
+          format: date-time
+      - $ref: '#/components/parameters/LimitParam'
+      - $ref: '#/components/parameters/NextTokenParam'
+      responses:
+        '200':
+          description: A paginated list of workloads
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      workloads:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/Workload'
+                  metadata:
+                    $ref: '#/components/schemas/PageMetadata'
+                  request_id:
+                    type: string
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+  /workloads/stats:
+    get:
+      operationId: getWorkloadStats
+      summary: Get workload statistics
+      description: Retrieve aggregated statistics across workloads.
+      tags:
+      - Workloads
+      parameters:
+      - $ref: '#/components/parameters/OrganizationIdHeader'
+      - name: time_range
+        in: query
+        description: Predefined time range
+        schema:
+          type: string
+          enum:
+          - today
+          - this_week
+          - this_month
+          - last_7_days
+          - last_30_days
+          - custom
+      - name: start_date
+        in: query
+        description: Start date for custom range (ISO 8601)
+        schema:
+          type: string
+          format: date-time
+      - name: end_date
+        in: query
+        description: End date for custom range (ISO 8601)
+        schema:
+          type: string
+          format: date-time
+      - name: group_by
+        in: query
+        description: Group results by field
+        schema:
+          type: string
+          enum:
+          - submitted_by
+          - initiative_id
+          - instance_type
+      - name: initiative_id
+        in: query
+        description: Filter to specific team
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Aggregated workload statistics
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/WorkloadStats'
+                  request_id:
+                    type: string
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+  /workloads/{workload_id}:
+    get:
+      operationId: getWorkload
+      summary: Get workload
+      description: Retrieve details for a specific workload.
+      tags:
+      - Workloads
+      parameters:
+      - $ref: '#/components/parameters/WorkloadIdPath'
+      - $ref: '#/components/parameters/OrganizationIdHeader'
+      responses:
+        '200':
+          description: Workload details
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/Workload'
+                  request_id:
+                    type: string
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  schemas:
+    Workload:
+      type: object
+      properties:
+        workload_id:
+          type: string
+          example: wl_abc123
+        name:
+          type: string
+        status:
+          type: string
+          enum:
+          - pending
+          - running
+          - completed
+          - failed
+          - cancelled
+        submitted_by:
+          type: string
+        initiative_id:
+          type: string
+        instance_type:
+          type: string
+        gpu_count:
+          type: integer
+        submitted_at:
+          type: string
+          format: date-time
+        started_at:
+          type: string
+          format: date-time
+        completed_at:
+          type: string
+          format: date-time
+          nullable: true
+        duration_seconds:
+          type: integer
+        gpu_hours_used:
+          type: number
+        exit_code:
+          type: integer
+          nullable: true
+        is_managed:
+          type: boolean
+        cluster_id:
+          type: string
+        namespace:
+          type: string
+    PageMetadata:
+      type: object
+      properties:
+        next_token:
+          type: string
+        total_count:
+          type: integer
+    WorkloadStats:
+      type: object
+      properties:
+        summary:
+          type: object
+          properties:
+            total_workloads:
+              type: integer
+            total_gpu_hours:
+              type: number
+            average_duration_seconds:
+              type: integer
+            success_rate:
+              type: number
+        grouped:
+          type: array
+          items:
+            type: object
+            properties:
+              initiative_id:
+                type: string
+              workload_count:
+                type: integer
+              gpu_hours:
+                type: number
+              success_rate:
+                type: number
+    Error:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+            message:
+              type: string
+            details:
+              type: array
+              items:
+                type: object
+        request_id:
+          type: string
+  parameters:
+    NextTokenParam:
+      name: next_token
+      in: query
+      description: Pagination cursor from a previous response
+      schema:
+        type: string
+    WorkloadIdPath:
+      name: workload_id
+      in: path
+      required: true
+      description: The unique workload identifier
+      schema:
+        type: string
+    RequestIdHeader:
+      name: X-Request-Id
+      in: header
+      required: false
+      description: Optional request ID for tracing.
+      schema:
+        type: string
+    OrganizationIdHeader:
+      name: X-Organization-Id
+      in: header
+      required: true
+      description: Your organization ID (not required for /health).
+      schema:
+        type: string
+    LimitParam:
+      name: limit
+      in: query
+      description: Number of results per page (1-100, default 20)
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100
+        default: 20
+  responses:
+    Unauthorized:
+      description: Missing or invalid authentication
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: The requested resource was not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Forbidden:
+      description: The caller's role does not permit access to this resource
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: Bearer token — a JWT from Cognito or a Chamber API token (prefix `ch.`). Generate API tokens in the dashboard under Settings > API Tokens.

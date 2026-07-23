@@ -1,0 +1,64 @@
+openapi: 3.1.0
+info:
+  title: Chamber Capacity Health API
+  version: 1.0.0
+  description: The Chamber REST API provides programmatic access to manage GPU capacity, monitor workloads, and query GPU metrics across your organization. Chamber is an AIOps control plane for enterprise AI infrastructure that helps ML teams monitor, diagnose, and resolve GPU workload issues across AWS, GCP, Azure, and on-premise clusters. All requests (except the health check) require a Bearer token and an organization context header.
+  contact:
+    name: Chamber Support
+    email: support@usechamber.io
+    url: https://docs.usechamber.io/api-reference/introduction
+  x-provider: Chamber
+  x-source: https://docs.usechamber.io/api-reference/introduction
+servers:
+- url: https://api.usechamber.io/v1
+  description: Production
+security:
+- bearerAuth: []
+tags:
+- name: Health
+  description: Service health check
+paths:
+  /health:
+    get:
+      operationId: getHealth
+      summary: Service health check
+      description: Check the health status of the Chamber API service. This endpoint does not require authentication and can be used for monitoring and load balancer health checks.
+      tags:
+      - Health
+      security: []
+      responses:
+        '200':
+          description: Service health status
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/Health'
+              example:
+                data:
+                  status: healthy
+                  version: 1.0.0
+                  timestamp: '2024-01-15T10:30:00Z'
+components:
+  schemas:
+    Health:
+      type: object
+      properties:
+        status:
+          type: string
+          enum:
+          - healthy
+          - unhealthy
+        version:
+          type: string
+        timestamp:
+          type: string
+          format: date-time
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: Bearer token — a JWT from Cognito or a Chamber API token (prefix `ch.`). Generate API tokens in the dashboard under Settings > API Tokens.

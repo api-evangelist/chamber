@@ -1,0 +1,154 @@
+openapi: 3.1.0
+info:
+  title: Chamber Capacity API
+  version: 1.0.0
+  description: The Chamber REST API provides programmatic access to manage GPU capacity, monitor workloads, and query GPU metrics across your organization. Chamber is an AIOps control plane for enterprise AI infrastructure that helps ML teams monitor, diagnose, and resolve GPU workload issues across AWS, GCP, Azure, and on-premise clusters. All requests (except the health check) require a Bearer token and an organization context header.
+  contact:
+    name: Chamber Support
+    email: support@usechamber.io
+    url: https://docs.usechamber.io/api-reference/introduction
+  x-provider: Chamber
+  x-source: https://docs.usechamber.io/api-reference/introduction
+servers:
+- url: https://api.usechamber.io/v1
+  description: Production
+security:
+- bearerAuth: []
+tags:
+- name: Capacity
+  description: Check budget allocations and remaining GPU hours
+paths:
+  /capacity:
+    get:
+      operationId: getCapacity
+      summary: Get capacity
+      description: Retrieve capacity budget and allocation information for your organization.
+      tags:
+      - Capacity
+      parameters:
+      - $ref: '#/components/parameters/OrganizationIdHeader'
+      - name: initiative_id
+        in: query
+        description: Filter to specific team
+        schema:
+          type: string
+      - name: pool_id
+        in: query
+        description: Filter to specific capacity pool
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Capacity budget and allocation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/Capacity'
+                  request_id:
+                    type: string
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+components:
+  schemas:
+    CapacityPool:
+      type: object
+      properties:
+        pool_id:
+          type: string
+        name:
+          type: string
+        allocated_gpu_hours:
+          type: number
+        used_gpu_hours:
+          type: number
+        remaining_gpu_hours:
+          type: number
+        instance_types:
+          type: array
+          items:
+            type: string
+    Initiative:
+      type: object
+      properties:
+        initiative_id:
+          type: string
+        name:
+          type: string
+        allocated_gpu_hours:
+          type: number
+        used_gpu_hours:
+          type: number
+        remaining_gpu_hours:
+          type: number
+    Capacity:
+      type: object
+      properties:
+        organization_id:
+          type: string
+        summary:
+          type: object
+          properties:
+            total_allocated_gpu_hours:
+              type: number
+            total_used_gpu_hours:
+              type: number
+            total_remaining_gpu_hours:
+              type: number
+            current_active_gpus:
+              type: integer
+        pools:
+          type: array
+          items:
+            $ref: '#/components/schemas/CapacityPool'
+        initiatives:
+          type: array
+          items:
+            $ref: '#/components/schemas/Initiative'
+    Error:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+            message:
+              type: string
+            details:
+              type: array
+              items:
+                type: object
+        request_id:
+          type: string
+  responses:
+    Unauthorized:
+      description: Missing or invalid authentication
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Forbidden:
+      description: The caller's role does not permit access to this resource
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  parameters:
+    OrganizationIdHeader:
+      name: X-Organization-Id
+      in: header
+      required: true
+      description: Your organization ID (not required for /health).
+      schema:
+        type: string
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: Bearer token — a JWT from Cognito or a Chamber API token (prefix `ch.`). Generate API tokens in the dashboard under Settings > API Tokens.
