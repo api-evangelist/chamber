@@ -1,22 +1,152 @@
 aid: chamber
 name: Chamber
-description: Chamber is a company surfaced as a portfolio company of y-combinator and added to the API
-  Evangelist network as a stub for enrichment. This profile is a lead awaiting the enrichment pipeline.
+description: >-
+  Chamber is an AIOps control plane for enterprise AI infrastructure (Y
+  Combinator W26, Seattle). Its always-on agent — Chambie — monitors, diagnoses,
+  and automatically resolves GPU workload failures across AWS, GCP, Azure, and
+  on-premise Kubernetes clusters, and optimizes utilization so ML teams can run
+  more workloads on the same GPUs without manual intervention. Chamber ships a
+  REST API, an official Python SDK (chamber-sdk), and a `chamber` CLI for
+  submitting GPU workloads, querying capacity budgets and GPU-hour allocations,
+  and reading GPU utilization / memory / temperature / power metrics, plus Slack
+  and email integrations and Terraform modules for GPU-ready EKS and GKE
+  clusters.
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://usechamber.io/og-image.png
 url: https://raw.githubusercontent.com/api-evangelist/chamber/refs/heads/main/apis.yml
+humanURL: https://www.usechamber.io
 x-type: company
 x-source: vc-portfolio
 x-backed-by:
 - y-combinator
-x-tier: stub
-x-tier-reason: portfolio-lead
+x-tier: active
+x-tier-reason: pipeline-enriched
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-18'
 tags:
+- GPU
+- AIOps
+- Machine Learning
+- MLOps
+- Infrastructure
+- Cloud
+- Kubernetes
+- Observability
+- Monitoring
 - Company
-apis: []
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
+apis:
+- aid: chamber:chamber-capacity-api
+  name: Chamber Capacity API
+  description: Check budget allocations and remaining GPU hours
+  humanURL: https://docs.usechamber.io/api-reference/introduction
+  baseURL: https://api.usechamber.io/v1
+  tags:
+  - Capacity
+  properties:
+  - type: OpenAPI
+    url: openapi/chamber-capacity-api-openapi.yml
+- aid: chamber:chamber-health-api
+  name: Chamber Health API
+  description: Service health check
+  humanURL: https://docs.usechamber.io/api-reference/introduction
+  baseURL: https://api.usechamber.io/v1
+  tags:
+  - Health
+  properties:
+  - type: OpenAPI
+    url: openapi/chamber-health-api-openapi.yml
+- aid: chamber:chamber-metrics-api
+  name: Chamber Metrics API
+  description: Query GPU utilization, memory, temperature, and power metrics
+  humanURL: https://docs.usechamber.io/api-reference/introduction
+  baseURL: https://api.usechamber.io/v1
+  tags:
+  - Metrics
+  properties:
+  - type: OpenAPI
+    url: openapi/chamber-metrics-api-openapi.yml
+- aid: chamber:chamber-workloads-api
+  name: Chamber Workloads API
+  description: List, retrieve, and get statistics for GPU workloads
+  humanURL: https://docs.usechamber.io/api-reference/introduction
+  baseURL: https://api.usechamber.io/v1
+  tags:
+  - Workloads
+  properties:
+  - type: OpenAPI
+    url: openapi/chamber-workloads-api-openapi.yml
+common:
+- type: Website
+  url: https://www.usechamber.io
+- type: DeveloperPortal
+  url: https://docs.usechamber.io/
+- type: Documentation
+  url: https://docs.usechamber.io/
+- type: APIReference
+  url: https://docs.usechamber.io/api-reference/introduction
+- type: GettingStarted
+  url: https://docs.usechamber.io/quickstart
+- type: Support
+  url: mailto:support@usechamber.io
+- type: Blog
+  url: https://www.usechamber.io/blog
+- type: GitHubOrganization
+  url: https://github.com/ChamberOrg
+- type: Pricing
+  url: https://www.usechamber.io/pricing
+- type: SignUp
+  url: https://www.usechamber.io/get-access
+- type: Login
+  url: https://app.usechamber.io
+- type: StatusPage
+  url: https://status.usechamber.io
+- type: LLMsTxt
+  url: llms/chamber-llms.txt
+- type: Authentication
+  url: authentication/chamber-authentication.yml
+- type: Conventions
+  url: conventions/chamber-conventions.yml
+- type: ErrorCatalog
+  url: errors/chamber-problem-types.yml
+- type: Lifecycle
+  url: lifecycle/chamber-lifecycle.yml
+- type: Conformance
+  url: conformance/chamber-conformance.yml
+- type: DataModel
+  url: data-model/chamber-data-model.yml
+- type: Packages
+  url: packages/chamber-packages.yml
+- type: SDKs
+  url: packages/chamber-packages.yml
+- type: CLI
+  url: cli/chamber-cli.yml
+- type: MCPServer
+  url: mcp/chamber-mcp.yml
+- type: AgentSkill
+  url: skills/chamber-monitor-gpu-workloads.md
+- type: AgentSkill
+  url: skills/chamber-track-gpu-capacity.md
+- type: DomainSecurity
+  url: security/chamber-domain-security.yml
+x-enrichment:
+  date: '2026-07-19'
+  status: backfilled
+  pass: local-v1
+  note: backfilled from .gitignore signal + verified work evidence

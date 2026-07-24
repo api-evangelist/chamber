@@ -1,0 +1,23 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Chamber API
+  version: 1.0.0
+extends: openapi/chamber-openapi.yml
+actions:
+  - target: $.info
+    update:
+      x-apievangelist-enriched: '2026-07-18'
+      x-apievangelist-source: https://docs.usechamber.io/api-reference/introduction
+      x-provider-status: early-access
+  - target: $.info
+    update:
+      x-conventions: conventions/chamber-conventions.yml
+      x-error-catalog: errors/chamber-problem-types.yml
+      x-lifecycle: lifecycle/chamber-lifecycle.yml
+      x-data-model: data-model/chamber-data-model.yml
+  - target: $.tags
+    update:
+      - name: Health
+      - name: Workloads
+      - name: Metrics
+      - name: Capacity

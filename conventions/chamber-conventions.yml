@@ -1,0 +1,56 @@
+generated: '2026-07-18'
+method: searched
+source: https://docs.usechamber.io/api-reference/introduction
+docs: https://docs.usechamber.io/api-reference/introduction
+authentication:
+  style: bearer-token
+  header: Authorization
+  format: 'Bearer <token>'
+  token_types: [cognito-jwt, api-token]
+  api_token_prefix: 'ch.'
+  tenant_header:
+    name: X-Organization-Id
+    required: true
+    note: Required on all endpoints except /v1/health; selects the organization context.
+  see: authentication/chamber-authentication.yml
+idempotency:
+  supported: false
+  note: >-
+    The documented v1 API surface is read-only (GET) and documents no
+    Idempotency-Key header. No idempotency contract is published.
+pagination:
+  style: cursor
+  request_params:
+    limit: { min: 1, max: 100, default: 20 }
+    next_token: Cursor returned from the previous response
+  response_fields:
+    location: metadata
+    next_token: metadata.next_token
+    total_count: metadata.total_count
+request_tracing:
+  header: X-Request-Id
+  required: false
+  note: Optional request ID echoed back as request_id in every response body.
+versioning:
+  style: uri-path
+  current: v1
+  base_url: https://api.usechamber.io/v1
+  see: lifecycle/chamber-lifecycle.yml
+response_envelope:
+  success:
+    shape: '{ data, metadata?, request_id }'
+    data: Response content
+    metadata: Pagination metadata (next_token, total_count)
+    request_id: Server-assigned request identifier
+  error:
+    shape: '{ error: { code, message, details? }, request_id }'
+    see: errors/chamber-problem-types.yml
+authorization_model:
+  style: rbac
+  roles:
+    - { name: ORG_ADMIN, access: Full organization access }
+    - { name: TEAM_LEAD, access: Team-specific access with management capabilities }
+    - { name: MEMBER, access: Team-specific read access }
+rate_limit_signaling:
+  documented: false
+  note: No rate-limit headers or policy are documented in the public API reference.

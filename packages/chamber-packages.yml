@@ -1,0 +1,32 @@
+generated: '2026-07-18'
+method: searched
+source: https://docs.usechamber.io/sdk/python/overview
+packages:
+  - language: python
+    registry: pypi
+    name: chamber-sdk
+    import: chamber_sdk
+    url: https://pypi.org/project/chamber-sdk/
+    install: pip install chamber-sdk
+    extras:
+      run: pip install chamber-sdk[run]
+    official: true
+    role: sdk
+    note: >-
+      Documented as the "Official Python client library for the Chamber GPU
+      platform" (docs.usechamber.io/sdk/python/overview); SDK is in early access.
+      Published PyPI metadata carries placeholder project URLs.
+  - language: cli
+    registry: distributed
+    name: chamber
+    url: https://docs.usechamber.io/cli/installation
+    install: Contact support@usechamber.io for early access; then `chamber login`
+    official: true
+    role: cli
+    note: First-party Chamber CLI (`chamber`); command surface catalogued in cli/chamber-cli.yml.
+source_repos:
+  github_org: https://github.com/ChamberOrg
+  public_repos:
+    - { name: terraform-aws-chamber-eks, url: https://github.com/ChamberOrg/terraform-aws-chamber-eks, language: HCL }
+    - { name: terraform-google-chamber-gke, url: https://github.com/ChamberOrg/terraform-google-chamber-gke, language: HCL }
+    - { name: chamber-claw, url: https://github.com/ChamberOrg/chamber-claw }

@@ -1,0 +1,25 @@
+generated: '2026-07-18'
+method: searched
+source: https://docs.usechamber.io/api-reference/introduction
+versioning:
+  scheme: uri-path
+  current: v1
+  base_url: https://api.usechamber.io/v1
+  docs: https://docs.usechamber.io/api-reference/introduction
+deprecation:
+  policy_url: null
+  sunset_header: false
+  note: No formal deprecation or Sunset-header policy is published for the v1 API.
+credentials:
+  api_token_expiration: Up to 1 year from creation; tokens without an expiry do not expire.
+  revocation: Tokens can be revoked in the dashboard under Settings > Security; revoking immediately disconnects agents/integrations.
+  docs: https://docs.usechamber.io/platform/settings
+sla:
+  url: null
+  uptime_target: null
+status_page: https://status.usechamber.io
+status_components:
+  - Marketing Site (www.usechamber.io)
+  - Chamber Console (app.usechamber.io)
+  - Chamber API (api.usechamber.io)
+deprecated_operations: []

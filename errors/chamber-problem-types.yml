@@ -1,0 +1,33 @@
+generated: '2026-07-18'
+method: derived
+source: openapi/chamber-openapi.yml
+docs: https://docs.usechamber.io/api-reference/introduction
+format: custom-envelope
+envelope:
+  shape: '{ error: { code, message, details? }, request_id }'
+  fields:
+    code: Machine-readable error code (e.g. VALIDATION_ERROR)
+    message: Human-readable error message
+    details: Optional array of structured detail objects
+    request_id: Server-assigned request identifier for tracing
+problems:
+  - status: 400
+    code: VALIDATION_ERROR
+    title: Invalid request
+    remediation: Check request parameters against the API reference; the details array lists offending fields.
+    source: docs
+  - status: 401
+    code: UNAUTHENTICATED
+    title: Missing or invalid authentication
+    remediation: Provide a valid Bearer token (JWT or ch. API token) in the Authorization header.
+    source: openapi/chamber-openapi.yml
+  - status: 403
+    code: FORBIDDEN
+    title: Insufficient role/permission
+    remediation: The caller's role (ORG_ADMIN / TEAM_LEAD / MEMBER) does not permit access to this resource or team.
+    source: openapi/chamber-openapi.yml
+  - status: 404
+    code: NOT_FOUND
+    title: Resource not found
+    remediation: Verify the workload_id or resource identifier exists within the organization.
+    source: openapi/chamber-openapi.yml

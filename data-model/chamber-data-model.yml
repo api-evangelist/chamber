@@ -1,0 +1,33 @@
+generated: '2026-07-18'
+method: derived
+source: openapi/chamber-openapi.yml
+docs: https://docs.usechamber.io/concepts/overview
+entities:
+  - name: Organization
+    id_field: organization_id
+    id_prefix: org_
+    description: Top-level tenant; all resources are scoped to an organization via X-Organization-Id.
+  - name: Initiative
+    id_field: initiative_id
+    id_prefix: init_
+    aka: Team
+    description: Hierarchical team/project that owns capacity allocations and workloads.
+  - name: CapacityPool
+    id_field: pool_id
+    id_prefix: pool_
+    description: GPU resource pool representing a cluster, with allocated/used/remaining GPU hours and instance types.
+  - name: Workload
+    id_field: workload_id
+    id_prefix: wl_
+    description: A submitted GPU job with status, instance type, gpu_count, and lifecycle timestamps.
+  - name: Metric
+    description: Time-series GPU measurements (utilization, memory, temperature, power) attached to a workload.
+relationships:
+  - { from: Organization, type: has_many, to: Initiative, via: initiative_id }
+  - { from: Organization, type: has_many, to: CapacityPool, via: pool_id }
+  - { from: Organization, type: has_many, to: Workload, via: organization_id }
+  - { from: Initiative, type: belongs_to, to: Organization }
+  - { from: Initiative, type: has_many, to: Workload, via: initiative_id }
+  - { from: CapacityPool, type: belongs_to, to: Organization }
+  - { from: Workload, type: belongs_to, to: Initiative, via: initiative_id }
+  - { from: Workload, type: has_many, to: Metric, via: workload_id }

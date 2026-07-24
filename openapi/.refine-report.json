@@ -1,0 +1,20 @@
+{
+  "provider": "chamber",
+  "sources": [
+    "chamber-capacity-api-openapi.yml",
+    "chamber-health-api-openapi.yml",
+    "chamber-metrics-api-openapi.yml",
+    "chamber-workloads-api-openapi.yml"
+  ],
+  "outputs": [
+    "chamber-capacity-api-openapi.yml",
+    "chamber-health-api-openapi.yml",
+    "chamber-metrics-api-openapi.yml",
+    "chamber-workloads-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

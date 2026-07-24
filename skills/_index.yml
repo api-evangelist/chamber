@@ -1,0 +1,12 @@
+generated: '2026-07-18'
+method: generated
+source: openapi/chamber-openapi.yml
+skills:
+  - file: chamber-monitor-gpu-workloads.md
+    name: Monitor GPU workloads
+    api: openapi/chamber-openapi.yml
+    operations: [listWorkloads, getWorkload, getWorkloadMetrics]
+  - file: chamber-track-gpu-capacity.md
+    name: Track GPU capacity and spend
+    api: openapi/chamber-openapi.yml
+    operations: [getCapacity, getWorkloadStats, listRankedWorkloadMetrics]

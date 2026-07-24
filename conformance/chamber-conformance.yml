@@ -1,0 +1,28 @@
+generated: '2026-07-18'
+method: derived
+source: openapi/chamber-openapi.yml
+standards:
+  - id: oauth2
+    conforms: false
+    evidence: No oauth2 securityScheme declared; auth is Bearer JWT / API token.
+  - id: bearer-token-http
+    conforms: true
+    evidence: openapi securityScheme type http scheme bearer (bearerFormat JWT)
+  - id: rfc9457-problem-details
+    conforms: false
+    evidence: 'Errors use a custom envelope { error: { code, message } }, not application/problem+json.'
+  - id: cursor-pagination
+    conforms: true
+    evidence: limit + next_token cursor with metadata.next_token / metadata.total_count
+  - id: openapi-3.1
+    conforms: true
+    evidence: Repository OpenAPI 3.1 description harvested from the published API reference.
+  - id: rbac
+    conforms: true
+    evidence: Documented ORG_ADMIN / TEAM_LEAD / MEMBER role model.
+  - id: iso8601-timestamps
+    conforms: true
+    evidence: All timestamps documented as ISO 8601 (e.g. 2024-01-15T10:30:00Z)
+compliance_program:
+  published: false
+  note: No public certifications (SOC 2 / ISO 27001 / etc.) or trust center were found for this early-access provider.

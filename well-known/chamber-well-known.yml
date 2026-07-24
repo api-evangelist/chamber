@@ -1,0 +1,15 @@
+generated: '2026-07-18'
+method: searched
+host: https://api.usechamber.io
+note: >-
+  Probed the standard discovery surface on the API and marketing hosts. No
+  document returned 200 — the API host returns 403 (WAF) on /.well-known/* and
+  the marketing host returns 404. Recorded for auditability; no WellKnown or
+  SecurityTxt pointer is emitted because nothing was served.
+documents:
+  - { path: /.well-known/security.txt, host: api.usechamber.io, status: 403 }
+  - { path: /.well-known/openid-configuration, host: api.usechamber.io, status: 403 }
+  - { path: /.well-known/oauth-authorization-server, host: api.usechamber.io, status: 403 }
+  - { path: /.well-known/api-catalog, host: api.usechamber.io, status: 403 }
+  - { path: /.well-known/ai-plugin.json, host: api.usechamber.io, status: 403 }
+  - { path: /.well-known/security.txt, host: www.usechamber.io, status: 404 }

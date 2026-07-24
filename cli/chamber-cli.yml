@@ -1,0 +1,43 @@
+generated: '2026-07-18'
+method: searched
+source: https://docs.usechamber.io/cli/commands
+binary: chamber
+availability: early-access
+install:
+  docs: https://docs.usechamber.io/cli/installation
+  note: Early access — contact support@usechamber.io. First-time setup is `chamber login` (browser or --token).
+auth:
+  browser: chamber login
+  token: chamber login --token ch.your-api-token
+  verify: chamber whoami
+global_flags:
+  - '-o, --output (table|json)'
+command_groups:
+  - group: Authentication
+    commands:
+      - { name: chamber login, summary: 'Browser or token-based login (--token ch.…)' }
+      - { name: chamber logout, summary: Log out and clear credentials }
+      - { name: chamber whoami, summary: Show the authenticated user and org }
+  - group: AI Chat
+    commands:
+      - { name: chamber chat, summary: 'Ask questions about workloads/capacity; supports -c named threads, -i image attach, --list. Requires browser login.' }
+  - group: Run (Auto-Containerize)
+    commands:
+      - { name: chamber run, summary: 'Auto-containerize and submit a training project (--gpus, --gpu-type, --team, --class, --dry-run)' }
+  - group: Workloads
+    commands:
+      - { name: chamber workloads list, summary: 'List workloads (--status, --initiative, --limit, -o json)' }
+      - { name: chamber workloads get, summary: Get a workload by id }
+      - { name: chamber workloads stats, summary: 'Aggregated stats (--time-range, --group-by)' }
+      - { name: chamber workloads metrics, summary: GPU metrics for a workload }
+      - { name: chamber workloads cancel, summary: Cancel a running workload }
+  - group: Submit Workloads
+    commands:
+      - { name: chamber submit, summary: 'Submit a workload (-i interactive, flags, Kubernetes manifest, or template)' }
+  - group: Capacity
+    commands:
+      - { name: chamber capacity, summary: Show capacity budgets and remaining GPU hours }
+  - group: Config
+    commands:
+      - { name: chamber config set, summary: 'Set config values (e.g. organization_id)' }
+      - { name: chamber completion, summary: 'Generate shell completion (bash|zsh|fish)' }

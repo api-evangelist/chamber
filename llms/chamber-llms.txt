@@ -1,0 +1,62 @@
+# Chamber
+
+## Docs
+
+- [CLAUDE](https://docs.usechamber.io/CLAUDE.md)
+- [Installation](https://docs.usechamber.io/agent/installation.md): Install the Chamber agent in your Kubernetes cluster
+- [Agent Overview](https://docs.usechamber.io/agent/overview.md): Understanding the Chamber Kubernetes agent
+- [Configuration](https://docs.usechamber.io/agent/standalone/configuration.md): Environment variables, workload labels, upgrading, and uninstalling the Standalone Agent
+- [Installation](https://docs.usechamber.io/agent/standalone/installation.md): Install the Chamber Standalone Agent on a GPU host
+- [Metrics Reference](https://docs.usechamber.io/agent/standalone/metrics.md): GPU, host, and workload metrics collected by the Standalone Agent and how to use them
+- [OTel Integration](https://docs.usechamber.io/agent/standalone/otel-integration.md): Send OpenTelemetry metrics from your applications to Chamber via the Standalone Agent
+- [Standalone Agent](https://docs.usechamber.io/agent/standalone/overview.md): Monitor GPU utilization and workloads on bare-metal or VM-based GPU hosts without Kubernetes
+- [Troubleshooting](https://docs.usechamber.io/agent/standalone/troubleshooting.md): Common issues and solutions for the Chamber Standalone Agent
+- [Troubleshooting](https://docs.usechamber.io/agent/troubleshooting.md): Common issues and solutions for the Chamber agent
+- [Upgrading](https://docs.usechamber.io/agent/upgrading.md): Upgrade the Chamber agent to newer versions
+- [Supported Scenarios](https://docs.usechamber.io/ai-ops/capabilities.md): The GPU workload failures and operational scenarios the AI Ops Agent detects and resolves
+- [Getting Started](https://docs.usechamber.io/ai-ops/getting-started.md): Enable the AI Ops Agent for your organization and configure it for your team's workflow
+- [How It Works](https://docs.usechamber.io/ai-ops/how-it-works.md): Three-trigger proactivity, intelligent diagnosis, and a learning system that compounds expertise over time
+- [AI Ops Agent](https://docs.usechamber.io/ai-ops/overview.md): Your always-on AI operations teammate that monitors, diagnoses, and resolves GPU workload issues
+- [Safety & Governance](https://docs.usechamber.io/ai-ops/safety.md): Five-layer defense-in-depth safety model, risk-tiered actions, and enterprise governance controls
+- [Capacity](https://docs.usechamber.io/api-reference/capacity.md): Check budget allocations and remaining GPU hours
+- [Health](https://docs.usechamber.io/api-reference/health.md): Service health check endpoint
+- [API Reference](https://docs.usechamber.io/api-reference/introduction.md): Chamber REST API for programmatic access to GPU capacity and workload management
+- [Metrics](https://docs.usechamber.io/api-reference/metrics.md): Query GPU utilization, memory, temperature, and power metrics
+- [Workloads](https://docs.usechamber.io/api-reference/workloads.md): List, retrieve, and get statistics for GPU workloads
+- [AI Assistant](https://docs.usechamber.io/cli/chat.md): Ask questions about your GPU infrastructure, workloads, and capacity directly from the terminal
+- [Commands Reference](https://docs.usechamber.io/cli/commands.md): Complete reference for all Chamber CLI commands
+- [Configuration](https://docs.usechamber.io/cli/configuration.md): Configure the Chamber CLI settings and credentials
+- [Installation](https://docs.usechamber.io/cli/installation.md): Install Chamber CLI in seconds and submit your first GPU workload
+- [CLI Overview](https://docs.usechamber.io/cli/introduction.md): Submit GPU workloads in seconds — no Docker or Kubernetes expertise required
+- [Auto-Containerize & Run](https://docs.usechamber.io/cli/run.md): Submit GPU workloads with one command — no Docker or Kubernetes expertise needed
+- [AWS EKS](https://docs.usechamber.io/cluster-deployment/aws-eks.md): Deploy a GPU-ready EKS cluster with Chamber on AWS
+- [Google Cloud GKE](https://docs.usechamber.io/cluster-deployment/google-gke.md): Deploy a GPU-ready GKE cluster with Chamber on Google Cloud
+- [Cluster Deployment](https://docs.usechamber.io/cluster-deployment/overview.md): Deploy GPU-ready Kubernetes clusters with Terraform
+- [Capacity Pools](https://docs.usechamber.io/concepts/capacity-pools.md): GPU resource pools representing your clusters
+- [Overview](https://docs.usechamber.io/concepts/overview.md): How Chamber manages GPU capacity across your organization
+- [Reservations](https://docs.usechamber.io/concepts/reservations.md): Allocating GPU capacity from pools to teams
+- [Scheduling](https://docs.usechamber.io/concepts/scheduling.md): How Chamber schedules GPU workloads across your organization
+- [Teams](https://docs.usechamber.io/concepts/teams.md): Hierarchical organization of teams and projects
+- [Workload Classes](https://docs.usechamber.io/concepts/workload-classes.md): Reserved vs elastic workloads
+- [Introduction](https://docs.usechamber.io/introduction.md): The AI Ops agent for ML teams
+- [Capacity Management](https://docs.usechamber.io/platform/capacity-management.md): Manage capacity pools across your clusters
+- [Cost Explorer](https://docs.usechamber.io/platform/cost-explorer.md): Analyze, forecast, and optimize GPU spend across your organization
+- [Dashboard](https://docs.usechamber.io/platform/dashboard.md): Real-time GPU utilization, spend efficiency, and AI-powered insights
+- [Email](https://docs.usechamber.io/platform/integrations/email.md): Automated utilization digests, workload notifications, and AI-powered email from Chamber
+- [Integrations](https://docs.usechamber.io/platform/integrations/overview.md): Connect Chamber with your tools for notifications, alerts, and reports
+- [Slack](https://docs.usechamber.io/platform/integrations/slack.md): Real-time notifications, AI chatbot, and scheduled reports in your Slack workspace
+- [Managing Teams](https://docs.usechamber.io/platform/managing-teams.md): Create and organize your team hierarchy
+- [Settings](https://docs.usechamber.io/platform/settings.md): Configure API tokens, GPU pricing, labels, and cloud integrations
+- [User Management](https://docs.usechamber.io/platform/user-management.md): Manage users, roles, and permissions
+- [Workloads](https://docs.usechamber.io/platform/workloads.md): View and manage GPU workloads
+- [Quickstart](https://docs.usechamber.io/quickstart.md): Get started with Chamber in under 10 minutes
+- [API Reference](https://docs.usechamber.io/sdk/python/api-reference.md): Complete reference for the Chamber Python SDK
+- [Authentication](https://docs.usechamber.io/sdk/python/authentication.md): Configure API credentials for the Chamber Python SDK
+- [Installation](https://docs.usechamber.io/sdk/python/installation.md): Install the Chamber Python SDK
+- [Python SDK](https://docs.usechamber.io/sdk/python/overview.md): Official Python client library for the Chamber GPU platform
+- [Quickstart](https://docs.usechamber.io/sdk/python/quickstart.md): Submit your first GPU workload with the Chamber Python SDK
+- [Auto-Containerize & Run](https://docs.usechamber.io/sdk/python/run.md): Submit GPU workloads in one line without Docker or Kubernetes expertise
+
+## Optional
+
+- [Dashboard](https://app.usechamber.io)

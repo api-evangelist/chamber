@@ -1,0 +1,33 @@
+generated: '2026-07-18'
+method: derived
+status: candidate
+source: openapi/chamber-openapi.yml
+note: >-
+  No official hosted Chamber MCP server was found (searched docs, npm
+  @modelcontextprotocol, MCP registries). This is a candidate tool list derived
+  one-per-operation from the published REST API, provided as a starting point.
+server:
+  name: chamber
+  transport: http
+tools:
+  - name: get_health
+    description: Check Chamber API service health
+    source_operation: openapi/chamber-openapi.yml#getHealth
+  - name: list_workloads
+    description: List GPU workloads with optional filtering
+    source_operation: openapi/chamber-openapi.yml#listWorkloads
+  - name: get_workload
+    description: Retrieve details for a specific GPU workload
+    source_operation: openapi/chamber-openapi.yml#getWorkload
+  - name: get_workload_stats
+    description: Aggregated statistics across GPU workloads
+    source_operation: openapi/chamber-openapi.yml#getWorkloadStats
+  - name: get_workload_metrics
+    description: GPU utilization/memory/temperature/power metrics for a workload
+    source_operation: openapi/chamber-openapi.yml#getWorkloadMetrics
+  - name: list_ranked_workload_metrics
+    description: Workloads ranked by utilization or consumption
+    source_operation: openapi/chamber-openapi.yml#listRankedWorkloadMetrics
+  - name: get_capacity
+    description: Capacity budgets and remaining GPU hours for the organization
+    source_operation: openapi/chamber-openapi.yml#getCapacity
