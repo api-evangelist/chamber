@@ -1,0 +1,110 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Chamber Capacity Metrics API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Metrics",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get ranked workload metrics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.usechamber.io/v1/workloads/metrics",
+            "headers": [
+              {
+                "name": "X-Organization-Id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "sort_by",
+                "value": "",
+                "type": "query",
+                "description": "Sort metric"
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query",
+                "description": "Sort order"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of results per page (1-100, default 20)"
+              },
+              {
+                "name": "initiative_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter to specific team"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Filter by workload status"
+              }
+            ]
+          },
+          "docs": "Retrieve metrics across workloads, ranked by utilization or consumption."
+        },
+        {
+          "info": {
+            "name": "Get workload metrics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.usechamber.io/v1/workloads/:workload_id/metrics",
+            "headers": [
+              {
+                "name": "X-Organization-Id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "workload_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique workload identifier"
+              },
+              {
+                "name": "time_range",
+                "value": "",
+                "type": "query",
+                "description": "Time range for the metrics window"
+              },
+              {
+                "name": "metrics",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of metrics to include"
+              }
+            ]
+          },
+          "docs": "Retrieve GPU metrics for a specific workload."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,175 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Chamber Capacity Workloads API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Workloads",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List workloads",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.usechamber.io/v1/workloads",
+            "headers": [
+              {
+                "name": "X-Organization-Id",
+                "value": ""
+              },
+              {
+                "name": "X-Request-Id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "organization_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by organization"
+              },
+              {
+                "name": "initiative_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by team"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Filter by workload status"
+              },
+              {
+                "name": "submitted_by",
+                "value": "",
+                "type": "query",
+                "description": "Filter by user who submitted the workload"
+              },
+              {
+                "name": "is_managed",
+                "value": "",
+                "type": "query",
+                "description": "Filter managed vs unmanaged workloads"
+              },
+              {
+                "name": "start_date",
+                "value": "",
+                "type": "query",
+                "description": "Filter workloads submitted after this date (ISO 8601)"
+              },
+              {
+                "name": "end_date",
+                "value": "",
+                "type": "query",
+                "description": "Filter workloads submitted before this date (ISO 8601)"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of results per page (1-100, default 20)"
+              },
+              {
+                "name": "next_token",
+                "value": "",
+                "type": "query",
+                "description": "Pagination cursor from a previous response"
+              }
+            ]
+          },
+          "docs": "Retrieve a paginated list of workloads with optional filtering. Results are automatically filtered based on your role and team access."
+        },
+        {
+          "info": {
+            "name": "Get workload statistics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.usechamber.io/v1/workloads/stats",
+            "headers": [
+              {
+                "name": "X-Organization-Id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "time_range",
+                "value": "",
+                "type": "query",
+                "description": "Predefined time range"
+              },
+              {
+                "name": "start_date",
+                "value": "",
+                "type": "query",
+                "description": "Start date for custom range (ISO 8601)"
+              },
+              {
+                "name": "end_date",
+                "value": "",
+                "type": "query",
+                "description": "End date for custom range (ISO 8601)"
+              },
+              {
+                "name": "group_by",
+                "value": "",
+                "type": "query",
+                "description": "Group results by field"
+              },
+              {
+                "name": "initiative_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter to specific team"
+              }
+            ]
+          },
+          "docs": "Retrieve aggregated statistics across workloads."
+        },
+        {
+          "info": {
+            "name": "Get workload",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.usechamber.io/v1/workloads/:workload_id",
+            "headers": [
+              {
+                "name": "X-Organization-Id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "workload_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique workload identifier"
+              }
+            ]
+          },
+          "docs": "Retrieve details for a specific workload."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

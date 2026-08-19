@@ -1,0 +1,55 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Chamber Capacity API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Capacity",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get capacity",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.usechamber.io/v1/capacity",
+            "headers": [
+              {
+                "name": "X-Organization-Id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "initiative_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter to specific team"
+              },
+              {
+                "name": "pool_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter to specific capacity pool"
+              }
+            ]
+          },
+          "docs": "Retrieve capacity budget and allocation information for your organization."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

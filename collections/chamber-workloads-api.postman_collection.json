@@ -1,0 +1,987 @@
+{
+  "item": [
+    {
+      "id": "d0f3f119-ec11-40d2-995d-ecca66d49990",
+      "name": "Workloads",
+      "description": {
+        "content": "List, retrieve, and get statistics for GPU workloads",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "1628f6f6-8ec0-4ea1-9ada-6f69d2ac27ea",
+          "name": "List workloads",
+          "request": {
+            "name": "List workloads",
+            "description": {
+              "content": "Retrieve a paginated list of workloads with optional filtering. Results are automatically filtered based on your role and team access.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "workloads"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "organization_id",
+                  "value": "<string>",
+                  "description": "Filter by organization"
+                },
+                {
+                  "disabled": false,
+                  "key": "initiative_id",
+                  "value": "<string>",
+                  "description": "Filter by team"
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>",
+                  "description": "Filter by workload status"
+                },
+                {
+                  "disabled": false,
+                  "key": "submitted_by",
+                  "value": "<string>",
+                  "description": "Filter by user who submitted the workload"
+                },
+                {
+                  "disabled": false,
+                  "key": "is_managed",
+                  "value": "<boolean>",
+                  "description": "Filter managed vs unmanaged workloads"
+                },
+                {
+                  "disabled": false,
+                  "key": "start_date",
+                  "value": "<dateTime>",
+                  "description": "Filter workloads submitted after this date (ISO 8601)"
+                },
+                {
+                  "disabled": false,
+                  "key": "end_date",
+                  "value": "<dateTime>",
+                  "description": "Filter workloads submitted before this date (ISO 8601)"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "20",
+                  "description": "Number of results per page (1-100, default 20)"
+                },
+                {
+                  "disabled": false,
+                  "key": "next_token",
+                  "value": "<string>",
+                  "description": "Pagination cursor from a previous response"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Your organization ID (not required for /health).",
+                "key": "X-Organization-Id",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "Optional request ID for tracing.",
+                "key": "X-Request-Id",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "fd1d529e-918a-4984-9b75-f010855395a1",
+              "name": "A paginated list of workloads",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workloads"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "organization_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "initiative_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "submitted_by",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "is_managed",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "start_date",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "end_date",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "next_token",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Your organization ID (not required for /health).",
+                    "key": "X-Organization-Id",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Optional request ID for tracing.",
+                    "key": "X-Request-Id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"workloads\": [\n      {\n        \"workload_id\": \"wl_abc123\",\n        \"name\": \"string\",\n        \"status\": \"pending\",\n        \"submitted_by\": \"string\",\n        \"initiative_id\": \"string\",\n        \"instance_type\": \"string\",\n        \"gpu_count\": 2612,\n        \"submitted_at\": \"1958-10-08T03:26:42.299Z\",\n        \"started_at\": \"2023-02-28T06:24:14.801Z\",\n        \"completed_at\": \"1963-12-03T20:25:29.288Z\",\n        \"duration_seconds\": 6873,\n        \"gpu_hours_used\": 8808.999569649337,\n        \"exit_code\": 7533,\n        \"is_managed\": true,\n        \"cluster_id\": \"string\",\n        \"namespace\": \"string\"\n      },\n      {\n        \"workload_id\": \"wl_abc123\",\n        \"name\": \"string\",\n        \"status\": \"pending\",\n        \"submitted_by\": \"string\",\n        \"initiative_id\": \"string\",\n        \"instance_type\": \"string\",\n        \"gpu_count\": 8849,\n        \"submitted_at\": \"2020-10-23T00:07:39.672Z\",\n        \"started_at\": \"2013-07-05T23:11:58.341Z\",\n        \"completed_at\": \"1971-06-23T14:26:15.196Z\",\n        \"duration_seconds\": 8547,\n        \"gpu_hours_used\": 4800.6971034080825,\n        \"exit_code\": 7807,\n        \"is_managed\": true,\n        \"cluster_id\": \"string\",\n        \"namespace\": \"string\"\n      }\n    ]\n  },\n  \"metadata\": {\n    \"next_token\": \"string\",\n    \"total_count\": 5129\n  },\n  \"request_id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2931c82e-950a-4ada-978b-ffc502490b9c",
+              "name": "Missing or invalid authentication",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workloads"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "organization_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "initiative_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "submitted_by",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "is_managed",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "start_date",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "end_date",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "next_token",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Your organization ID (not required for /health).",
+                    "key": "X-Organization-Id",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Optional request ID for tracing.",
+                    "key": "X-Request-Id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\"\n  },\n  \"request_id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "47231f9c-4990-4b42-9189-5405053c6c7b",
+              "name": "The caller's role does not permit access to this resource",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workloads"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "organization_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "initiative_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "submitted_by",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "is_managed",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "start_date",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "end_date",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "next_token",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Your organization ID (not required for /health).",
+                    "key": "X-Organization-Id",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Optional request ID for tracing.",
+                    "key": "X-Request-Id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\"\n  },\n  \"request_id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c3188927-68c0-4e41-a676-18107c6f0b4c",
+          "name": "Get workload statistics",
+          "request": {
+            "name": "Get workload statistics",
+            "description": {
+              "content": "Retrieve aggregated statistics across workloads.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "workloads",
+                "stats"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "time_range",
+                  "value": "<string>",
+                  "description": "Predefined time range"
+                },
+                {
+                  "disabled": false,
+                  "key": "start_date",
+                  "value": "<dateTime>",
+                  "description": "Start date for custom range (ISO 8601)"
+                },
+                {
+                  "disabled": false,
+                  "key": "end_date",
+                  "value": "<dateTime>",
+                  "description": "End date for custom range (ISO 8601)"
+                },
+                {
+                  "disabled": false,
+                  "key": "group_by",
+                  "value": "<string>",
+                  "description": "Group results by field"
+                },
+                {
+                  "disabled": false,
+                  "key": "initiative_id",
+                  "value": "<string>",
+                  "description": "Filter to specific team"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Your organization ID (not required for /health).",
+                "key": "X-Organization-Id",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e5aa65dd-fac5-4e3b-9193-f099bdd1b30d",
+              "name": "Aggregated workload statistics",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workloads",
+                    "stats"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "time_range",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "start_date",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "end_date",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "group_by",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "initiative_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Your organization ID (not required for /health).",
+                    "key": "X-Organization-Id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"summary\": {\n      \"total_workloads\": 2457,\n      \"total_gpu_hours\": 7390.589688666881,\n      \"average_duration_seconds\": 9964,\n      \"success_rate\": 5343.667858169619\n    },\n    \"grouped\": [\n      {\n        \"initiative_id\": \"string\",\n        \"workload_count\": 7550,\n        \"gpu_hours\": 1838.5048550426109,\n        \"success_rate\": 7600.691404690453\n      },\n      {\n        \"initiative_id\": \"string\",\n        \"workload_count\": 6548,\n        \"gpu_hours\": 4761.541442623729,\n        \"success_rate\": 1051.0677019288905\n      }\n    ]\n  },\n  \"request_id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "82a6689f-1cc6-4eb0-8429-e9abbd37d8be",
+              "name": "Missing or invalid authentication",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workloads",
+                    "stats"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "time_range",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "start_date",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "end_date",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "group_by",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "initiative_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Your organization ID (not required for /health).",
+                    "key": "X-Organization-Id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\"\n  },\n  \"request_id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a7e099cb-a2b9-4234-b74e-4eaa1d02214d",
+              "name": "The caller's role does not permit access to this resource",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workloads",
+                    "stats"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "time_range",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "start_date",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "end_date",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "group_by",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "initiative_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Your organization ID (not required for /health).",
+                    "key": "X-Organization-Id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\"\n  },\n  \"request_id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8fb984e5-c5fb-40e4-8bbe-2f6ef06edeb0",
+          "name": "Get workload",
+          "request": {
+            "name": "Get workload",
+            "description": {
+              "content": "Retrieve details for a specific workload.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "workloads",
+                ":workload_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "workload_id",
+                  "description": "(Required) The unique workload identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Your organization ID (not required for /health).",
+                "key": "X-Organization-Id",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "64d2cd46-1bf2-4747-a239-328fcdaf0192",
+              "name": "Workload details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workloads",
+                    ":workload_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workload_id",
+                      "description": "(Required) The unique workload identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Your organization ID (not required for /health).",
+                    "key": "X-Organization-Id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"workload_id\": \"wl_abc123\",\n    \"name\": \"string\",\n    \"status\": \"running\",\n    \"submitted_by\": \"string\",\n    \"initiative_id\": \"string\",\n    \"instance_type\": \"string\",\n    \"gpu_count\": 2888,\n    \"submitted_at\": \"2003-04-23T22:35:54.689Z\",\n    \"started_at\": \"1954-09-11T02:41:37.537Z\",\n    \"completed_at\": \"1997-08-12T06:21:10.646Z\",\n    \"duration_seconds\": 9542,\n    \"gpu_hours_used\": 266.1575912396852,\n    \"exit_code\": 5606,\n    \"is_managed\": true,\n    \"cluster_id\": \"string\",\n    \"namespace\": \"string\"\n  },\n  \"request_id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c210cbc8-3617-4a8c-b8c4-d3ca9fd37b0d",
+              "name": "Missing or invalid authentication",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workloads",
+                    ":workload_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workload_id",
+                      "description": "(Required) The unique workload identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Your organization ID (not required for /health).",
+                    "key": "X-Organization-Id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\"\n  },\n  \"request_id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f4bb2f3d-e9bd-4e3c-877e-fc90ff5c5c58",
+              "name": "The caller's role does not permit access to this resource",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workloads",
+                    ":workload_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workload_id",
+                      "description": "(Required) The unique workload identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Your organization ID (not required for /health).",
+                    "key": "X-Organization-Id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\"\n  },\n  \"request_id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2ae0c900-6e8e-4067-8ffa-095e9b65aeb8",
+              "name": "The requested resource was not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workloads",
+                    ":workload_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workload_id",
+                      "description": "(Required) The unique workload identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Your organization ID (not required for /health).",
+                    "key": "X-Organization-Id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\"\n  },\n  \"request_id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.usechamber.io/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "eb08f949-b5dc-437c-82c7-507bc00fb64e",
+    "name": "Chamber Capacity Workloads API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Chamber REST API provides programmatic access to manage GPU capacity, monitor workloads, and query GPU metrics across your organization. Chamber is an AIOps control plane for enterprise AI infrastructure that helps ML teams monitor, diagnose, and resolve GPU workload issues across AWS, GCP, Azure, and on-premise clusters. All requests (except the health check) require a Bearer token and an organization context header.\n\nContact Support:\n Name: Chamber Support\n Email: support@usechamber.io",
+      "type": "text/plain"
+    }
+  }
+}

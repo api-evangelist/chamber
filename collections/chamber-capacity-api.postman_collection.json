@@ -1,0 +1,269 @@
+{
+  "item": [
+    {
+      "id": "c7560fbc-eafe-4754-be9a-1cad25b68c2f",
+      "name": "Capacity",
+      "description": {
+        "content": "Check budget allocations and remaining GPU hours",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "348adab2-ebd8-4fb7-8da8-25eadc60aa25",
+          "name": "Get capacity",
+          "request": {
+            "name": "Get capacity",
+            "description": {
+              "content": "Retrieve capacity budget and allocation information for your organization.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "capacity"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "initiative_id",
+                  "value": "<string>",
+                  "description": "Filter to specific team"
+                },
+                {
+                  "disabled": false,
+                  "key": "pool_id",
+                  "value": "<string>",
+                  "description": "Filter to specific capacity pool"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Your organization ID (not required for /health).",
+                "key": "X-Organization-Id",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2e626249-c826-4090-958d-2265cf73e1f5",
+              "name": "Capacity budget and allocation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "capacity"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "initiative_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "pool_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Your organization ID (not required for /health).",
+                    "key": "X-Organization-Id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"organization_id\": \"string\",\n    \"summary\": {\n      \"total_allocated_gpu_hours\": 3580.255653809562,\n      \"total_used_gpu_hours\": 5393.9923515886885,\n      \"total_remaining_gpu_hours\": 3978.2418319029234,\n      \"current_active_gpus\": 1173\n    },\n    \"pools\": [\n      {\n        \"pool_id\": \"string\",\n        \"name\": \"string\",\n        \"allocated_gpu_hours\": 2548.460630682862,\n        \"used_gpu_hours\": 4359.488305192789,\n        \"remaining_gpu_hours\": 7158.747810543652,\n        \"instance_types\": [\n          \"string\",\n          \"string\"\n        ]\n      },\n      {\n        \"pool_id\": \"string\",\n        \"name\": \"string\",\n        \"allocated_gpu_hours\": 3540.317116202979,\n        \"used_gpu_hours\": 5752.531557125977,\n        \"remaining_gpu_hours\": 7161.894680372909,\n        \"instance_types\": [\n          \"string\",\n          \"string\"\n        ]\n      }\n    ],\n    \"initiatives\": [\n      {\n        \"initiative_id\": \"string\",\n        \"name\": \"string\",\n        \"allocated_gpu_hours\": 5595.571707822168,\n        \"used_gpu_hours\": 8909.854961258163,\n        \"remaining_gpu_hours\": 3728.875779624572\n      },\n      {\n        \"initiative_id\": \"string\",\n        \"name\": \"string\",\n        \"allocated_gpu_hours\": 2979.676287686921,\n        \"used_gpu_hours\": 3297.3309331426826,\n        \"remaining_gpu_hours\": 2730.9736324716437\n      }\n    ]\n  },\n  \"request_id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "661edbdb-df65-4d26-bbdf-f77b1130e80d",
+              "name": "Missing or invalid authentication",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "capacity"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "initiative_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "pool_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Your organization ID (not required for /health).",
+                    "key": "X-Organization-Id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\"\n  },\n  \"request_id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a4f206f7-0a52-4788-a7cc-a59a3d9359c1",
+              "name": "The caller's role does not permit access to this resource",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "capacity"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "initiative_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "pool_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Your organization ID (not required for /health).",
+                    "key": "X-Organization-Id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\"\n  },\n  \"request_id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.usechamber.io/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "3c92b153-e4f5-4c54-87cd-8ab964739ad3",
+    "name": "Chamber Capacity API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Chamber REST API provides programmatic access to manage GPU capacity, monitor workloads, and query GPU metrics across your organization. Chamber is an AIOps control plane for enterprise AI infrastructure that helps ML teams monitor, diagnose, and resolve GPU workload issues across AWS, GCP, Azure, and on-premise clusters. All requests (except the health check) require a Bearer token and an organization context header.\n\nContact Support:\n Name: Chamber Support\n Email: support@usechamber.io",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,119 @@
+{
+  "item": [
+    {
+      "id": "b982373b-25cb-4168-8838-cdd57e9043b0",
+      "name": "Health",
+      "description": {
+        "content": "Service health check",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "84ddd888-1569-4294-bb55-7048067e02b6",
+          "name": "Service health check",
+          "request": {
+            "name": "Service health check",
+            "description": {
+              "content": "Check the health status of the Chamber API service. This endpoint does not require authentication and can be used for monitoring and load balancer health checks.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "health"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "012519d2-1e40-4330-b1b2-aecf322ac195",
+              "name": "Service health status",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "health"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"status\": \"healthy\",\n    \"version\": \"1.0.0\",\n    \"timestamp\": \"2024-01-15T10:30:00Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.usechamber.io/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "5499c84e-bd03-4f20-b4bc-cc9dbf06a7f8",
+    "name": "Chamber Capacity Health API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Chamber REST API provides programmatic access to manage GPU capacity, monitor workloads, and query GPU metrics across your organization. Chamber is an AIOps control plane for enterprise AI infrastructure that helps ML teams monitor, diagnose, and resolve GPU workload issues across AWS, GCP, Azure, and on-premise clusters. All requests (except the health check) require a Bearer token and an organization context header.\n\nContact Support:\n Name: Chamber Support\n Email: support@usechamber.io",
+      "type": "text/plain"
+    }
+  }
+}
