@@ -1,0 +1,44 @@
+slug: chamber
+provider: Chamber
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Electrical Components & Equipment
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 3
+edges:
+- tag: Capacity
+  spec_file: chamber-capacity-api-openapi.yml
+  capability_id: BC-600.50
+  capability_id_l1: BC-600
+  capability_name: IT Infrastructure Management
+  confidence: 0.7
+  evidence: GET /capacity getCapacity Get capacity; "programmatic access to manage GPU capacity ... across
+    AWS, GCP, Azure, and on-premise clusters"
+  reason: GPU compute capacity across clouds is IT infrastructure management; not a subscription or product
+    capacity business capability.
+- tag: Metrics
+  spec_file: chamber-metrics-api-openapi.yml
+  capability_id: BC-600.40
+  capability_id_l1: BC-600
+  capability_name: IT Operations Management
+  confidence: 0.7
+  evidence: GET /workloads/metrics listRankedWorkloadMetrics Get ranked workload metrics
+  reason: Monitoring metrics for GPU workloads — day-to-day IT operations monitoring, per the AIOps control
+    plane framing.
+- tag: Workloads
+  spec_file: chamber-workloads-api-openapi.yml
+  capability_id: BC-600.40
+  capability_id_l1: BC-600
+  capability_name: IT Operations Management
+  confidence: 0.7
+  evidence: GET /workloads listWorkloads; GET /workloads/stats getWorkloadStats; "monitor, diagnose, and
+    resolve GPU workload issues"
+  reason: Inventory and statistics of running compute workloads — IT operations monitoring, not a business-domain
+    object.
