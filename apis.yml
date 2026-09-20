@@ -117,6 +117,8 @@ apis:
   - type: OpenAPI
     url: openapi/chamber-workloads-api-openapi.yml
 common:
+- type: Plans
+  url: plans/chamber-plans-pricing.yml
 - type: CapabilityMap
   url: capabilities/chamber-capability-edges.yml
   name: Chamber Business Capability Map
