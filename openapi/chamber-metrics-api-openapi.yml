@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Chamber Capacity Metrics API
+  title: Chamber Metrics API
   version: 1.0.0
   description: The Chamber REST API provides programmatic access to manage GPU capacity, monitor workloads, and query GPU metrics across your organization. Chamber is an AIOps control plane for enterprise AI infrastructure that helps ML teams monitor, diagnose, and resolve GPU workload issues across AWS, GCP, Azure, and on-premise clusters. All requests (except the health check) require a Bearer token and an organization context header.
   contact:
@@ -118,6 +118,30 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
+  parameters:
+    LimitParam:
+      name: limit
+      in: query
+      description: Number of results per page (1-100, default 20)
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100
+        default: 20
+    WorkloadIdPath:
+      name: workload_id
+      in: path
+      required: true
+      description: The unique workload identifier
+      schema:
+        type: string
+    OrganizationIdHeader:
+      name: X-Organization-Id
+      in: header
+      required: true
+      description: Your organization ID (not required for /health).
+      schema:
+        type: string
   schemas:
     PageMetadata:
       type: object
@@ -143,8 +167,8 @@ components:
         request_id:
           type: string
   responses:
-    Unauthorized:
-      description: Missing or invalid authentication
+    Forbidden:
+      description: The caller's role does not permit access to this resource
       content:
         application/json:
           schema:
@@ -155,36 +179,12 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    Forbidden:
-      description: The caller's role does not permit access to this resource
+    Unauthorized:
+      description: Missing or invalid authentication
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-  parameters:
-    WorkloadIdPath:
-      name: workload_id
-      in: path
-      required: true
-      description: The unique workload identifier
-      schema:
-        type: string
-    LimitParam:
-      name: limit
-      in: query
-      description: Number of results per page (1-100, default 20)
-      schema:
-        type: integer
-        minimum: 1
-        maximum: 100
-        default: 20
-    OrganizationIdHeader:
-      name: X-Organization-Id
-      in: header
-      required: true
-      description: Your organization ID (not required for /health).
-      schema:
-        type: string
   securitySchemes:
     bearerAuth:
       type: http

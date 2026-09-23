@@ -1,15 +1,26 @@
 generated: '2026-07-18'
 method: searched
 host: https://api.usechamber.io
-note: >-
-  Probed the standard discovery surface on the API and marketing hosts. No
-  document returned 200 — the API host returns 403 (WAF) on /.well-known/* and
-  the marketing host returns 404. Recorded for auditability; no WellKnown or
-  SecurityTxt pointer is emitted because nothing was served.
-documents:
-  - { path: /.well-known/security.txt, host: api.usechamber.io, status: 403 }
-  - { path: /.well-known/openid-configuration, host: api.usechamber.io, status: 403 }
-  - { path: /.well-known/oauth-authorization-server, host: api.usechamber.io, status: 403 }
-  - { path: /.well-known/api-catalog, host: api.usechamber.io, status: 403 }
-  - { path: /.well-known/ai-plugin.json, host: api.usechamber.io, status: 403 }
-  - { path: /.well-known/security.txt, host: www.usechamber.io, status: 404 }
+note: Probed the standard discovery surface on the API and marketing hosts. No document returned 200 —
+  the API host returns 403 (WAF) on /.well-known/* and the marketing host returns 404. Recorded for auditability;
+  no WellKnown or SecurityTxt pointer is emitted because nothing was served.
+hosts:
+- host: https://api.usechamber.io
+  documents:
+  - path: /.well-known/security.txt
+    status: 403
+  - path: /.well-known/openid-configuration
+    status: 403
+  - path: /.well-known/oauth-authorization-server
+    status: 403
+  - path: /.well-known/api-catalog
+    status: 403
+  - path: /.well-known/ai-plugin.json
+    status: 403
+  - path: /.well-known/security.txt
+    status: 404
+x-shape-fix:
+  converted: '2026-08-20'
+  from: documents
+  note: Rewritten into hosts[] -> documents[], the only shape well_known_docs() in score.rb reads. A served
+    .well-known surface recorded in any other shape scores as absent.

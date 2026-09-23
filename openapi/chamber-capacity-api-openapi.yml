@@ -1,4 +1,4 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
   title: Chamber Capacity API
   version: 1.0.0
@@ -55,23 +55,6 @@ paths:
           $ref: '#/components/responses/Forbidden'
 components:
   schemas:
-    CapacityPool:
-      type: object
-      properties:
-        pool_id:
-          type: string
-        name:
-          type: string
-        allocated_gpu_hours:
-          type: number
-        used_gpu_hours:
-          type: number
-        remaining_gpu_hours:
-          type: number
-        instance_types:
-          type: array
-          items:
-            type: string
     Initiative:
       type: object
       properties:
@@ -125,19 +108,23 @@ components:
                 type: object
         request_id:
           type: string
-  responses:
-    Unauthorized:
-      description: Missing or invalid authentication
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Forbidden:
-      description: The caller's role does not permit access to this resource
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
+    CapacityPool:
+      type: object
+      properties:
+        pool_id:
+          type: string
+        name:
+          type: string
+        allocated_gpu_hours:
+          type: number
+        used_gpu_hours:
+          type: number
+        remaining_gpu_hours:
+          type: number
+        instance_types:
+          type: array
+          items:
+            type: string
   parameters:
     OrganizationIdHeader:
       name: X-Organization-Id
@@ -146,6 +133,19 @@ components:
       description: Your organization ID (not required for /health).
       schema:
         type: string
+  responses:
+    Forbidden:
+      description: The caller's role does not permit access to this resource
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Missing or invalid authentication
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   securitySchemes:
     bearerAuth:
       type: http
