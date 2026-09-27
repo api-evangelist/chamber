@@ -55,43 +55,6 @@ paths:
           $ref: '#/components/responses/Forbidden'
 components:
   schemas:
-    Initiative:
-      type: object
-      properties:
-        initiative_id:
-          type: string
-        name:
-          type: string
-        allocated_gpu_hours:
-          type: number
-        used_gpu_hours:
-          type: number
-        remaining_gpu_hours:
-          type: number
-    Capacity:
-      type: object
-      properties:
-        organization_id:
-          type: string
-        summary:
-          type: object
-          properties:
-            total_allocated_gpu_hours:
-              type: number
-            total_used_gpu_hours:
-              type: number
-            total_remaining_gpu_hours:
-              type: number
-            current_active_gpus:
-              type: integer
-        pools:
-          type: array
-          items:
-            $ref: '#/components/schemas/CapacityPool'
-        initiatives:
-          type: array
-          items:
-            $ref: '#/components/schemas/Initiative'
     Error:
       type: object
       properties:
@@ -125,6 +88,43 @@ components:
           type: array
           items:
             type: string
+    Capacity:
+      type: object
+      properties:
+        organization_id:
+          type: string
+        summary:
+          type: object
+          properties:
+            total_allocated_gpu_hours:
+              type: number
+            total_used_gpu_hours:
+              type: number
+            total_remaining_gpu_hours:
+              type: number
+            current_active_gpus:
+              type: integer
+        pools:
+          type: array
+          items:
+            $ref: '#/components/schemas/CapacityPool'
+        initiatives:
+          type: array
+          items:
+            $ref: '#/components/schemas/Initiative'
+    Initiative:
+      type: object
+      properties:
+        initiative_id:
+          type: string
+        name:
+          type: string
+        allocated_gpu_hours:
+          type: number
+        used_gpu_hours:
+          type: number
+        remaining_gpu_hours:
+          type: number
   parameters:
     OrganizationIdHeader:
       name: X-Organization-Id

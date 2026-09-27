@@ -55,7 +55,7 @@ x-docs-hosting: vercel
 tags:
 - GPU
 - AIOps
-- Machine-Learning
+- Machine Learning
 - MLOps
 - Infrastructure
 - Cloud
@@ -74,6 +74,7 @@ tags_raw:
 - Observability
 - Monitoring
 - Company
+- Machine-Learning
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com

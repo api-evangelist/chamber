@@ -195,6 +195,20 @@ components:
       description: Pagination cursor from a previous response
       schema:
         type: string
+    RequestIdHeader:
+      name: X-Request-Id
+      in: header
+      required: false
+      description: Optional request ID for tracing.
+      schema:
+        type: string
+    WorkloadIdPath:
+      name: workload_id
+      in: path
+      required: true
+      description: The unique workload identifier
+      schema:
+        type: string
     LimitParam:
       name: limit
       in: query
@@ -204,13 +218,6 @@ components:
         minimum: 1
         maximum: 100
         default: 20
-    WorkloadIdPath:
-      name: workload_id
-      in: path
-      required: true
-      description: The unique workload identifier
-      schema:
-        type: string
     OrganizationIdHeader:
       name: X-Organization-Id
       in: header
@@ -218,21 +225,7 @@ components:
       description: Your organization ID (not required for /health).
       schema:
         type: string
-    RequestIdHeader:
-      name: X-Request-Id
-      in: header
-      required: false
-      description: Optional request ID for tracing.
-      schema:
-        type: string
   schemas:
-    PageMetadata:
-      type: object
-      properties:
-        next_token:
-          type: string
-        total_count:
-          type: integer
     Error:
       type: object
       properties:
@@ -249,33 +242,6 @@ components:
                 type: object
         request_id:
           type: string
-    WorkloadStats:
-      type: object
-      properties:
-        summary:
-          type: object
-          properties:
-            total_workloads:
-              type: integer
-            total_gpu_hours:
-              type: number
-            average_duration_seconds:
-              type: integer
-            success_rate:
-              type: number
-        grouped:
-          type: array
-          items:
-            type: object
-            properties:
-              initiative_id:
-                type: string
-              workload_count:
-                type: integer
-              gpu_hours:
-                type: number
-              success_rate:
-                type: number
     Workload:
       type: object
       properties:
@@ -323,6 +289,40 @@ components:
           type: string
         namespace:
           type: string
+    WorkloadStats:
+      type: object
+      properties:
+        summary:
+          type: object
+          properties:
+            total_workloads:
+              type: integer
+            total_gpu_hours:
+              type: number
+            average_duration_seconds:
+              type: integer
+            success_rate:
+              type: number
+        grouped:
+          type: array
+          items:
+            type: object
+            properties:
+              initiative_id:
+                type: string
+              workload_count:
+                type: integer
+              gpu_hours:
+                type: number
+              success_rate:
+                type: number
+    PageMetadata:
+      type: object
+      properties:
+        next_token:
+          type: string
+        total_count:
+          type: integer
   responses:
     Forbidden:
       description: The caller's role does not permit access to this resource
