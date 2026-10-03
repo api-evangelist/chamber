@@ -55,39 +55,6 @@ paths:
           $ref: '#/components/responses/Forbidden'
 components:
   schemas:
-    Error:
-      type: object
-      properties:
-        error:
-          type: object
-          properties:
-            code:
-              type: string
-            message:
-              type: string
-            details:
-              type: array
-              items:
-                type: object
-        request_id:
-          type: string
-    CapacityPool:
-      type: object
-      properties:
-        pool_id:
-          type: string
-        name:
-          type: string
-        allocated_gpu_hours:
-          type: number
-        used_gpu_hours:
-          type: number
-        remaining_gpu_hours:
-          type: number
-        instance_types:
-          type: array
-          items:
-            type: string
     Capacity:
       type: object
       properties:
@@ -112,6 +79,23 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Initiative'
+    CapacityPool:
+      type: object
+      properties:
+        pool_id:
+          type: string
+        name:
+          type: string
+        allocated_gpu_hours:
+          type: number
+        used_gpu_hours:
+          type: number
+        remaining_gpu_hours:
+          type: number
+        instance_types:
+          type: array
+          items:
+            type: string
     Initiative:
       type: object
       properties:
@@ -125,6 +109,35 @@ components:
           type: number
         remaining_gpu_hours:
           type: number
+    Error:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+            message:
+              type: string
+            details:
+              type: array
+              items:
+                type: object
+        request_id:
+          type: string
+  responses:
+    Unauthorized:
+      description: Missing or invalid authentication
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Forbidden:
+      description: The caller's role does not permit access to this resource
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   parameters:
     OrganizationIdHeader:
       name: X-Organization-Id
@@ -133,19 +146,6 @@ components:
       description: Your organization ID (not required for /health).
       schema:
         type: string
-  responses:
-    Forbidden:
-      description: The caller's role does not permit access to this resource
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Missing or invalid authentication
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   securitySchemes:
     bearerAuth:
       type: http
