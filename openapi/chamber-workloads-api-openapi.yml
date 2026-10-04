@@ -189,6 +189,56 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
+    Error:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+            message:
+              type: string
+            details:
+              type: array
+              items:
+                type: object
+        request_id:
+          type: string
+    PageMetadata:
+      type: object
+      properties:
+        next_token:
+          type: string
+        total_count:
+          type: integer
+    WorkloadStats:
+      type: object
+      properties:
+        summary:
+          type: object
+          properties:
+            total_workloads:
+              type: integer
+            total_gpu_hours:
+              type: number
+            average_duration_seconds:
+              type: integer
+            success_rate:
+              type: number
+        grouped:
+          type: array
+          items:
+            type: object
+            properties:
+              initiative_id:
+                type: string
+              workload_count:
+                type: integer
+              gpu_hours:
+                type: number
+              success_rate:
+                type: number
     Workload:
       type: object
       properties:
@@ -236,56 +286,25 @@ components:
           type: string
         namespace:
           type: string
-    PageMetadata:
-      type: object
-      properties:
-        next_token:
-          type: string
-        total_count:
-          type: integer
-    WorkloadStats:
-      type: object
-      properties:
-        summary:
-          type: object
-          properties:
-            total_workloads:
-              type: integer
-            total_gpu_hours:
-              type: number
-            average_duration_seconds:
-              type: integer
-            success_rate:
-              type: number
-        grouped:
-          type: array
-          items:
-            type: object
-            properties:
-              initiative_id:
-                type: string
-              workload_count:
-                type: integer
-              gpu_hours:
-                type: number
-              success_rate:
-                type: number
-    Error:
-      type: object
-      properties:
-        error:
-          type: object
-          properties:
-            code:
-              type: string
-            message:
-              type: string
-            details:
-              type: array
-              items:
-                type: object
-        request_id:
-          type: string
+  responses:
+    NotFound:
+      description: The requested resource was not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Missing or invalid authentication
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Forbidden:
+      description: The caller's role does not permit access to this resource
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   parameters:
     NextTokenParam:
       name: next_token
@@ -293,15 +312,13 @@ components:
       description: Pagination cursor from a previous response
       schema:
         type: string
-    LimitParam:
-      name: limit
-      in: query
-      description: Number of results per page (1-100, default 20)
+    OrganizationIdHeader:
+      name: X-Organization-Id
+      in: header
+      required: true
+      description: Your organization ID (not required for /health).
       schema:
-        type: integer
-        minimum: 1
-        maximum: 100
-        default: 20
+        type: string
     RequestIdHeader:
       name: X-Request-Id
       in: header
@@ -316,32 +333,15 @@ components:
       description: The unique workload identifier
       schema:
         type: string
-    OrganizationIdHeader:
-      name: X-Organization-Id
-      in: header
-      required: true
-      description: Your organization ID (not required for /health).
+    LimitParam:
+      name: limit
+      in: query
+      description: Number of results per page (1-100, default 20)
       schema:
-        type: string
-  responses:
-    Unauthorized:
-      description: Missing or invalid authentication
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFound:
-      description: The requested resource was not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Forbidden:
-      description: The caller's role does not permit access to this resource
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
+        type: integer
+        minimum: 1
+        maximum: 100
+        default: 20
   securitySchemes:
     bearerAuth:
       type: http
