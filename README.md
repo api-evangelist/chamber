@@ -64,6 +64,124 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Chamber is a company surfaced as a portfolio company of y-combinator and added to the API Evangelist network as a stub for enrichment. This profile is a lead awaiting the enrichment pipeline.
+Chamber is an AIOps control plane for enterprise AI infrastructure (Y Combinator W26, Seattle). Its always-on agent — Chambie — monitors, diagnoses, and automatically resolves GPU workload failures across AWS, GCP, Azure, and on-premise Kubernetes clusters, and optimizes utilization so ML teams can run more workloads on the same GPUs without manual intervention. Chamber ships a REST API, an official Python SDK (chamber-sdk), and a `chamber` CLI for submitting GPU workloads, querying capacity budgets and GPU-hour allocations, and reading GPU utilization / memory / temperature / power metrics, plus Slack and email integrations and Terraform modules for GPU-ready EKS and GKE clusters.
 
-Backed by: y-combinator
+**Areas:** GPU · AIOps · Machine Learning · MLOps · Infrastructure · Cloud · Kubernetes · Observability · Monitoring · Company
+
+## Chamber on APIs.io
+
+Everything profiled for Chamber is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/chamber/](https://apis.io/providers/chamber/)** — or go straight to one of the APIs or properties below.
+
+### APIs (4)
+
+- [Chamber Capacity API](https://apis.io/apis/chamber/chamber-capacity-api/) — Check budget allocations and remaining GPU hours
+- [Chamber Health API](https://apis.io/apis/chamber/chamber-health-api/) — Service health check
+- [Chamber Metrics API](https://apis.io/apis/chamber/chamber-metrics-api/) — Query GPU utilization, memory, temperature, and power metrics
+- [Chamber Workloads API](https://apis.io/apis/chamber/chamber-workloads-api/) — List, retrieve, and get statistics for GPU workloads
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### MCP servers (1)
+
+Model Context Protocol servers that expose the API to agents.
+
+- [chamber](https://apis.io/servers/chamber/chamber/)
+
+#### Collections (4)
+
+Postman and Open Collection request collections.
+
+- [Chamber Capacity API](https://apis.io/collections/chamber/open-chamber-capacity-api/)
+- [Chamber Capacity Health API](https://apis.io/collections/chamber/open-chamber-health-api/)
+- [Chamber Capacity Metrics API](https://apis.io/collections/chamber/open-chamber-metrics-api/)
+- [Chamber Capacity Workloads API](https://apis.io/collections/chamber/open-chamber-workloads-api/)
+
+#### Overlays (1)
+
+OpenAPI overlays, including conversational phrasing for each operation.
+
+- [Chamber Openapi Overlay](https://apis.io/overlays/chamber/chamber-openapi-overlay/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Chamber Authentication](https://apis.io/security/chamber/chamber-authentication/)
+- [Chamber Domain Security](https://apis.io/security/chamber/chamber-domain-security/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Chamber Plans Pricing](https://apis.io/plans/chamber/chamber-plans-pricing/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://www.usechamber.io)
+- [Documentation](https://docs.usechamber.io/)
+- [Getting started](https://docs.usechamber.io/quickstart)
+- [API reference](https://docs.usechamber.io/api-reference/introduction)
+- [Pricing](https://www.usechamber.io/pricing)
+- [Sign up](https://www.usechamber.io/get-access)
+- [Blog](https://www.usechamber.io/blog)
+- [GitHub](https://github.com/ChamberOrg)
+- [Status](https://status.usechamber.io)
+
+## API Evangelist rating
+
+**Kin Score 42.5** — developing · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 73.2 |
+| Contract quality | 51.4 |
+| Contract governance | 4.5 |
+| Operational transparency | 18.4 |
+| Developer ergonomics | 73.2 |
+| Access clarity | 23.7 |
+
+**Agent readiness 24.6** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | — |
+| Reversibility Documented | na |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | na |
+| Error Semantics | derived (partial credit) |
+| OpenAPI Examples | partial |
+| Rate Limit Signal | — |
+| Event Surface Described | — |
+| Agent Skills | derived (partial credit) |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | na |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | na |
+| Operation Distinctiveness | distinct |
+
+**Regulatory alignment 15.5** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/chamber/](https://apis.io/providers/chamber/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Chamber: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/chamber/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
